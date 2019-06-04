@@ -31,10 +31,7 @@ const REMOVE_COUNT = 'REMOVE_COUNT';
 const store = new Vuex.Store({
     state: {
         isLogin: false,
-        editor: {
-            goEdit: true,
-            isEditing: true
-        },
+        isEditing: false,
         token: "",
         userID: ""
     },
@@ -56,6 +53,10 @@ const store = new Vuex.Store({
         certainLogin() {
             console.log(store.state.token);
             return !common.isEmpty(store.state.token);
+        },
+        isEdit() {
+            console.log(store.state.isEditing);
+            return store.state.isEditing;
         }
     }
 });
@@ -66,6 +67,10 @@ router.beforeEach((to, from, next) => {
 
     if(to.meta.requireAuth) {
         // 判断该路由是否需要登录权限
+        if(to.meta.navTop){
+            store.state.isEditing = true;
+        }
+
         if(!common.isEmpty(store.state.token)) {
             next();
             // 通过 store.state.token 获取当前 token是否存在

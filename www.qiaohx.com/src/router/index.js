@@ -41,7 +41,8 @@ export default new Router({
       name: 'EditOnline',
       component: EditOnline,
       meta: {
-        requireAuth: true
+        requireAuth: true,
+        navTop: true
       }
     },
     {

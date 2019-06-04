@@ -1,8 +1,8 @@
 <template>
     <div id="app">
         <!-- <vueCanvasNest :config="{color:'0,0,0',opacity:1}"></vueCanvasNest> -->
-        <NavHeader>
-            <div class="" slot="web">
+        <NavHeader v-if="!isEditor" >
+            <div slot="web">
                 <ul class="nav navbar-nav">
                     <li v-for="item in list" v-bind:key="item.id">
                         <router-link class="text-right" v-bind:to="item.link">{{ item.text }}</router-link>
@@ -60,6 +60,9 @@ export default {
   computed: {
       isLogin() {
           return this.$store.getters.certainLogin;
+      },
+      isEditor() {
+          return this.$store.getters.isEdit;
       }
   },
   methods: {
