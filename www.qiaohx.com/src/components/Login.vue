@@ -97,6 +97,8 @@ export default {
                 this.$options.methods.popup(that);
                 return false;
             }
+            // that.$store.commit('ADD_COUNT', '0123456789');
+            // that.$router.push('/')
             this.$axios.post(this.$base.baseUrl + this.$base.loginUrl, {
                 "certType": this.common.accountType(this.username),
                 "loginCert": this.username,

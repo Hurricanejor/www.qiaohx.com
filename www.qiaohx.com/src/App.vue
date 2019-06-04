@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <!-- <vueCanvasNest :config="{color:'0,0,0',opacity:1}"></vueCanvasNest> -->
-        <NavHeader :isLogin=true>
+        <NavHeader>
             <div class="" slot="web">
                 <ul class="nav navbar-nav">
                     <li v-for="item in list" v-bind:key="item.id">
@@ -19,10 +19,6 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <!-- <li><a href="#">jmeter</a></li>
-                            <li><a href="#">EJB</a></li>
-                            <li><a href="#">Jasper Report</a></li>
-                            <li class="divider"></li> -->
                             <li><a href="#">设置</a></li>
                             <li class="divider"></li>
                             <li><a href="#" @click="logOut">退出</a></li>

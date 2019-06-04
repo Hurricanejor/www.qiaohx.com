@@ -1,12 +1,14 @@
 <template lang="html">
-    <div class="container">
-        <div class="col-md-11 col-xs-9">
-          <div class="form-group">
-              <input type="text" class="form-control" placeholder="请输入标题">
+    <div class="">
+        <div class="">
+          <div class="col-md-11 col-xs-9">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="请输入标题">
+            </div>
           </div>
-        </div>
-        <div class="col-md-1 col-xs-3">
-            <button type="button" @click="btnSaveArticle()" class="btn btn-primary dropdown-toggle" aria-expanded="false">保存</button>
+          <div class="col-md-1 col-xs-3">
+              <button type="button" @click="btnSaveArticle()" class="btn btn-primary dropdown-toggle" aria-expanded="false">保存</button>
+          </div>
         </div>
         <div id="editor-md" class="main-editor">
           <textarea v-model="articleContent"></textarea>
@@ -110,32 +112,32 @@ export default {
         console.log("==========================")
         console.log(this.instance.getMarkdown())
         // this.$options.methods.getMarkdown()
-        // this.$axios.post(this.$base.baseUrl + this.$base.articleAddUrl, {
-        //     "cid": this.$store.state.token,
-        //     "content": "文章内容*",
-        //     "groupId": "分组Id*",
-        //     "keyWord": "",
-        //     "title": "文章标题*"
-        // }).then(function (response) {
-        //     console.log(response)
-        //     if(response.data.code == 0 && response.status == 200){
-        //         // that.$store.commit('ADD_COUNT', response.data.cid);
-        //         // that.$router.push('/')
-        //     }
-        //     else{
-        //         // that.bol = false;
-        //         // that.items[1].flagUser = true;
-        //         // that.items[1].tipValue = response.data.errMsg;
-        //         // that.popFlag = true;
-        //         // that.popMsg = "登录过期，请重新登录"
-        //         // that.common.popup(that);
+        this.$axios.post(this.$base.baseUrl + this.$base.articleAddUrl, {
+            "cid": this.$store.state.token,
+            "content": "文章内容*",
+            "groupId": "分组Id*",
+            "keyWord": "",
+            "title": "文章标题*"
+        }).then(function (response) {
+            console.log(response)
+            if(response.data.code == 0 && response.status == 200){
+                // that.$store.commit('ADD_COUNT', response.data.cid);
+                // that.$router.push('/')
+            }
+            else{
+                // that.bol = false;
+                // that.items[1].flagUser = true;
+                // that.items[1].tipValue = response.data.errMsg;
+                // that.popFlag = true;
+                // that.popMsg = "登录过期，请重新登录"
+                // that.common.popup(that);
                 
-        //         // that.$store.commit('REMOVE_COUNT', response.data.cid);
-        //         // that.$router.push('/Login')
-        //     }
-        // }).catch(function (error) {
-        //     console.log(error);
-        // });
+                // that.$store.commit('REMOVE_COUNT', response.data.cid);
+                // that.$router.push('/Login')
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
       }
     }
   };
