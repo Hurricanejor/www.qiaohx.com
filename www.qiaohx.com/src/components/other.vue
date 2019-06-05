@@ -22,57 +22,57 @@
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">编辑个人资料</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="pet_name" class="col-sm-2 control-label">昵称</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="pet_name" placeholder="请输入昵称">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">编辑个人资料</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="pet_name" class="col-sm-2 control-label">昵称</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="pet_name" placeholder="请输入昵称">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="true_name" class="col-sm-2 control-label">姓名</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="true_name" placeholder="请输入姓名">
+                            <div class="form-group">
+                                <label for="true_name" class="col-sm-2 control-label">姓名</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="true_name" placeholder="请输入姓名">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="col-sm-2 control-label">Email</label>
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control" id="email" placeholder="请输入Email地址">
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="email" placeholder="请输入Email地址">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" class="col-sm-2 control-label">电话</label>
-                            <div class="col-sm-9">
-                                <input type="number" class="form-control" id="phone" placeholder="请输入电话">
+                            <div class="form-group">
+                                <label for="phone" class="col-sm-2 control-label">电话</label>
+                                <div class="col-sm-9">
+                                    <input type="number" class="form-control" id="phone" placeholder="请输入电话">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" class="col-sm-2 control-label">性别</label>
-                            <div class="col-sm-9">
-                                <select class="form-control">
-                                    <option>男</option>
-                                    <option>女</option>
-                                </select>
+                            <div class="form-group">
+                                <label for="phone" class="col-sm-2 control-label">性别</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control">
+                                        <option>男</option>
+                                        <option>女</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" class="col-sm-2 control-label">简介</label>
-                            <div class="col-sm-9">
-                                <textarea name="" id="" placeholder="请简单的描述一下自己~" class="form-control" cols="3"></textarea>
+                            <div class="form-group">
+                                <label for="phone" class="col-sm-2 control-label">简介</label>
+                                <div class="col-sm-9">
+                                    <textarea name="" id="" placeholder="请简单的描述一下自己~" class="form-control" cols="3"></textarea>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary">保存</button>
-                </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                    </div>
                 </div>
             </div>
         </div>

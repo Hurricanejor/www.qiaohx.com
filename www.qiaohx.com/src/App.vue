@@ -8,22 +8,10 @@
                         <router-link class="text-right" v-bind:to="item.link">{{ item.text }}</router-link>
                     </li>
                 </ul>
-                <ul v-if="!isLogin" class="nav navbar-nav navbar-right">
-                    <li><router-link to="/Login" class="login-item">登录</router-link></li>
-                    <li><router-link class="login-item border-white" to="/SignUp">注册</router-link></li>
-                </ul>
-                <ul v-if="isLogin" class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="./assets/images/lazy-pig.jpg" alt="l" class="img-circle img-photo">
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">设置</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#" @click="logOut">退出</a></li>
-                        </ul>
-                    </li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><router-link v-if="!isLogin" to="/Login" class="login-item">登录</router-link></li>
+                    <li><router-link v-if="!isLogin" class="login-item border-white" to="/SignUp">注册</router-link></li>
+                    <li><UserOperation v-if="isLogin" ></UserOperation></li>
                 </ul>
             </div>
         </NavHeader>
@@ -38,6 +26,7 @@ import NavFooter from './components/NavFooter'
 import vueCanvasNest from 'vue-canvas-nest'
 import Login from './components/Login'
 import EditOnline from './components/EditOnline'
+import UserOperation from './components/userOperation'
 
 export default {
   name: 'App',
@@ -46,7 +35,8 @@ export default {
     NavFooter,
     vueCanvasNest,
     Login,
-    EditOnline
+    EditOnline,
+    UserOperation
   },
   data() {
       return {
@@ -64,21 +54,11 @@ export default {
       isEditor() {
           return this.$store.getters.isEdit;
       }
-  },
-  methods: {
-      logOut() {
-          console.log(this.$store.state.token)
-          this.$store.commit('REMOVE_COUNT', this.$store.state.token);
-          console.log(this.$store.state.token)
-          this.$router.push('/Login')
-      }
   }
 }
 </script>
 <style lang="scss" type="text/css">
     @import '~@/assets/css/index';
 </style>
-<style scoped>
-    .img-photo {width: 24px; height: 24px;}
-</style>
+
 
