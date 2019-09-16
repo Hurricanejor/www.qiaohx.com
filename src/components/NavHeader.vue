@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="navbar navbar-inverse" role="navigation" id="myTabs">
+    <div class="navbar navbar-default" role="navigation" id="myTabs">
         <div class="container-fluid">
             <div class="navbar-header">
                 <div class="pull-right">

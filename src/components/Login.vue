@@ -91,33 +91,36 @@ export default {
         },
         fn: function() {
             var that = this;
-            if(this.common.isEmpty(this.username) || this.common.isEmpty(this.password)) {
-                this.popFlag = true;
-                this.popMsg = "请输入用户名和密码"
-                this.$options.methods.popup(that);
-                return false;
-            }
-            // that.$store.commit('ADD_COUNT', '0123456789');
+            that.$store.commit('ADD_COUNT', "response.data.cid");
             // that.$router.push('/')
-            this.$axios.post(this.$base.baseUrl + this.$base.loginUrl, {
-                "certType": this.common.accountType(this.username),
-                "loginCert": this.username,
-                "password": this.$hex.hex_md5(this.password)
-            }).then(function (response) {
-                if(response.data.code == 0 && response.status == 200){
-                    that.$store.commit('ADD_COUNT', response.data.cid);
-                    that.$router.push('/')
-                }
-                else{
-                    that.bol = false;
-                    that.items[1].flagUser = true;
-                    that.items[1].tipValue = response.data.errMsg;
-                }
-            }).catch(function (error) {
-                that.popFlag = true;
-                that.popMsg = "服务器错误";
-                that.$options.methods.popup(that);
-            });
+            // var that = this;
+            // if(this.common.isEmpty(this.username) || this.common.isEmpty(this.password)) {
+            //     this.popFlag = true;
+            //     this.popMsg = "请输入用户名和密码"
+            //     this.$options.methods.popup(that);
+            //     return false;
+            // }
+            // // that.$store.commit('ADD_COUNT', '0123456789');
+            // // that.$router.push('/')
+            // this.$axios.post(this.$base.baseUrl + this.$base.loginUrl, {
+            //     "certType": this.common.accountType(this.username),
+            //     "loginCert": this.username,
+            //     "password": this.$hex.hex_md5(this.password)
+            // }).then(function (response) {
+            //     if(response.data.code == 0 && response.status == 200){
+            //         that.$store.commit('ADD_COUNT', response.data.cid);
+            //         that.$router.push('/')
+            //     }
+            //     else{
+            //         that.bol = false;
+            //         that.items[1].flagUser = true;
+            //         that.items[1].tipValue = response.data.errMsg;
+            //     }
+            // }).catch(function (error) {
+            //     that.popFlag = true;
+            //     that.popMsg = "服务器错误";
+            //     that.$options.methods.popup(that);
+            // });
         },
         popup: function(e) {
             var num = 0;

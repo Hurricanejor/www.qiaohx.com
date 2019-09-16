@@ -13,6 +13,21 @@
                 <UserOperation></UserOperation>
             </div>
         </div>
+        <!-- <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
+          <FormItem prop="user">
+              <Input type="text" v-model="formInline.user" placeholder="Username">
+                  <Icon type="ios-person-outline" slot="prepend"></Icon>
+              </Input>
+          </FormItem>
+          <FormItem prop="password">
+              <Input type="password" v-model="formInline.password" placeholder="Password">
+                  <Icon type="ios-lock-outline" slot="prepend"></Icon>
+              </Input>
+          </FormItem>
+          <FormItem>
+              <Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
+          </FormItem>
+      </Form> -->
         
         <div class="modal fade" id="articleModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document">
@@ -130,7 +145,7 @@ export default {
         default() {
           return {
             width: '100%',
-            height: 500,
+            height: 'calc(100vh - 150px)',
             path: '../../static/MDeditor/lib/', // Autoload modules mode, codemirror, marked... dependents libs path
             codeFold: true,
             saveHTMLToTextarea: true,
@@ -155,7 +170,8 @@ export default {
         instance: null,
         popFlag: false,
         popMsg: "",
-        groupName: ""
+        groupName: "",
+        titleName: ""
       };
     },
     watch: {
@@ -244,10 +260,10 @@ export default {
 <style type="text/css">
 @import "../../static/MDeditor/css/editormd.css";
 </style>
-<style scoped>
-  .blog-title {width:100%; height: 55px; line-height: 55px;}
-  .blog-title div {text-align: center;}
-  .blog-title input {display: inline-block;}
+<style type="text/css">
+  html{
+    height: 100%;
+  }
 </style>
 
 
