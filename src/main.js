@@ -38,7 +38,7 @@ const store = new Vuex.Store({
     state: {
         isLogin: false,
         isEditing: false,
-        token: "abc",
+        token: "",
         userID: ""
     },
     mutations: {
@@ -67,32 +67,32 @@ const store = new Vuex.Store({
     }
 });
 
-// router.beforeEach((to, from, next) => {
-//     store.state.token = localStorage.getItem('token');
-//     // 获取本地存储的token
+router.beforeEach((to, from, next) => {
+    store.state.token = localStorage.getItem('token');
+    // 获取本地存储的token
 
-//     if(to.meta.requireAuth) {
-//         // 判断该路由是否需要登录权限
-//         if(to.meta.navTop){
-//             store.state.isEditing = true;
-//         }
+    if(to.meta.requireAuth) {
+        // 判断该路由是否需要登录权限
+        if(to.meta.navTop){
+            store.state.isEditing = true;
+        }
 
-//         if(!common.isEmpty(store.state.token)) {
-//             next();
-//             // 通过 store.state.token 获取当前 token是否存在
-//         }
-//         else {
-//             next({
-//                 // path: '/Login',
-//                 // query: {redirect: to.fullPath}
-//                 // 将跳转的路由 path 作为参数，登录成功后跳转到该路由
-//             })
-//         }
-//     }
-//     else {
-//         next();
-//     }
-// })
+        if(!common.isEmpty(store.state.token)) {
+            next();
+            // 通过 store.state.token 获取当前 token是否存在
+        }
+        else {
+            next({
+                path: '/Login',
+                query: {redirect: to.fullPath}
+                // 将跳转的路由 path 作为参数，登录成功后跳转到该路由
+            })
+        }
+    }
+    else {
+        next();
+    }
+})
 
 
 /* eslint-disable no-new */

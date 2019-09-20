@@ -1,126 +1,24 @@
 <template lang="html">
     <div class="">
-        <div class="blog-title">
-            <div class="col-md-10 col-xs-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="请输入标题">
-                </div>
-            </div>
-            <div class="col-md-1 col-xs-3">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="modal" data-target="#articleModal" aria-expanded="false">保存</button>
-            </div>
-            <div class="col-md-1 col-xs-3">
-                <UserOperation></UserOperation>
-            </div>
-        </div>
-        <!-- <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
-          <FormItem prop="user">
-              <Input type="text" v-model="formInline.user" placeholder="Username">
-                  <Icon type="ios-person-outline" slot="prepend"></Icon>
-              </Input>
+        <!-- <Test></Test> -->
+        <Form :model="formData" ref="formData">
+          <FormItem prop="titleCheck">
+            <Row :gutter="16">
+                <Col span="20"><Input type="text" v-model="formData.title" placeholder="请输入标题"></Input></Col>
+                <Col span="2"><Button @click="handleClick()">发布文章</Button></Col>
+                <Col span="2"><UserOperation></UserOperation></Col>
+            </Row>
           </FormItem>
-          <FormItem prop="password">
-              <Input type="password" v-model="formInline.password" placeholder="Password">
-                  <Icon type="ios-lock-outline" slot="prepend"></Icon>
-              </Input>
+        <Modal v-model="modal1" title="发布文章" @on-ok="ok" @on-cancel="cancel">
+          <FormItem label="分类">
+              <Input placeholder="Enter something..."></Input>
           </FormItem>
-          <FormItem>
-              <Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
-          </FormItem>
-      </Form> -->
-        
-        <div class="modal fade" id="articleModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">发布文章</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="pet_name" class="col-sm-2 control-label">分类</label>
-                                <div class="col-sm-5">
-                                    <select class="form-control">
-                                        <option>请选择</option>
-                                        <option>分类1</option>
-                                        <option>分类2</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm-4">
-                                    <label for="" data-toggle="modal" data-target="#typeModal">添加分类</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="true_name" class="col-sm-2 control-label">姓名</label>
-                                <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="true_name" placeholder="请输入姓名">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="col-sm-2 control-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="email" placeholder="请输入Email地址">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone" class="col-sm-2 control-label">电话</label>
-                                <div class="col-sm-9">
-                                    <input type="number" class="form-control" id="phone" placeholder="请输入电话">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone" class="col-sm-2 control-label">性别</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control">
-                                        <option>男</option>
-                                        <option>女</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone" class="col-sm-2 control-label">简介</label>
-                                <div class="col-sm-9">
-                                    <textarea name="" id="" placeholder="请简单的描述一下自己~" class="form-control" cols="3"></textarea>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" @click="btnSaveArticle()" class="btn btn-primary">保存</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="typeModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h5 class="modal-title">分类名称</h5>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal">
-                          <div class="form-group">
-                              <label for="group_name" class="col-sm-3 control-label">名称</label>
-                              <div class="col-sm-9">
-                                  <input type="text" v-model="groupName" class="form-control" id="group_name" placeholder="请输入分类名称">
-                              </div>
-                          </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="button" @click="addGroup()" class="btn btn-primary">保存</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </Modal>
         <div id="editor-md" class="main-editor">
           <textarea></textarea>
         </div>
         <Popup v-show="popFlag" :msg='popMsg'></Popup>
+        </Form>
     </div>
 </template>
 
@@ -128,12 +26,16 @@
 import $s from "scriptjs"
 import Popup from './popup'
 import UserOperation from './userOperation'
+import AddTags from './addTags'
+import Test from './test'
 
 export default {
     name: 'EditDocMainEditor',
     components: {
       Popup,
-      UserOperation
+      UserOperation,
+      AddTags,
+      Test
     },
     props: {
       editorPath: {
@@ -166,12 +68,34 @@ export default {
       },
     },
     data() {
+      // const validateTitle = (rule, value, callback) => {
+      //   console.log(value)
+      //   debugger;
+      //     if (value === '') {
+      //         callback(new Error('Please enter your password'));
+      //     } else {
+      //         if (this.formData.title !== '') {
+      //             // 对第二个密码框单独验证
+      //             this.$refs.formData.validateField('titleCheck');
+      //         }
+      //         callback();
+      //     }
+      // };
       return {
         instance: null,
         popFlag: false,
         popMsg: "",
         groupName: "",
-        titleName: ""
+        titleName: "",
+        modal1: false,
+        formData: {
+            title: ""
+        },
+        // ruleCustom: {
+        //     title: [
+        //         { validator: validateTitle, trigger: 'blur' }
+        //     ]
+        // }
       };
     },
     watch: {
@@ -179,8 +103,6 @@ export default {
         deep: true
         // return this.instance;
       }
-    },
-    created() {
     },
     mounted() {
       $s([
@@ -191,8 +113,6 @@ export default {
           this.initEditor();
         });
       });
-    },
-    beforeDestroy() {
     },
     methods: {
       initEditor() {
@@ -213,7 +133,6 @@ export default {
       },
       addGroup() {
         var that = this;
-
         this.$axios.post(this.$base.baseUrl + this.$base.addGroupUrl, {
           "cid": this.$store.state.token,
           "groupName": this.groupName
@@ -221,6 +140,29 @@ export default {
           console.log(that.$store.state.token)
           console.log(res);
         });
+      },
+      ok () {
+          this.$Message.info('Clicked ok');
+      },
+      cancel () {
+          this.$Message.info('Clicked cancel');
+      },
+      handleSubmit (name) {
+        this.$refs[name].validate((valid) => {
+            if (valid) {
+                this.$Message.success('Success!');
+            } else {
+                this.$Message.error('Fail!');
+            }
+        })
+          // this.$refs.formData.validateField('titleCheck')
+      },
+      handleClick() {
+        // debugger;
+        if (this.formData.title == '') {
+                  // 对第二个密码框单独验证
+                  this.$refs.formData.validateField('titleCheck');
+              }
       },
       btnSaveArticle() {
         var that = this;
@@ -235,19 +177,19 @@ export default {
         }).then(function (response) {
             console.log(response)
             if(response.data.code == 0 && response.status == 200){
-                // that.$store.commit('ADD_COUNT', response.data.cid);
-                // that.$router.push('/')
+                that.$store.commit('ADD_COUNT', response.data.cid);
+                that.$router.push('/')
             }
             else{
-                // that.bol = false;
-                // that.items[1].flagUser = true;
-                // that.items[1].tipValue = response.data.errMsg;
-                // that.popFlag = true;
-                // that.popMsg = "登录过期，请重新登录"
-                // that.common.popup(that);
+                that.bol = false;
+                that.items[1].flagUser = true;
+                that.items[1].tipValue = response.data.errMsg;
+                that.popFlag = true;
+                that.popMsg = "登录过期，请重新登录"
+                that.common.popup(that);
                 
-                // that.$store.commit('REMOVE_COUNT', response.data.cid);
-                // that.$router.push('/Login')
+                that.$store.commit('REMOVE_COUNT', response.data.cid);
+                that.$router.push('/Login')
             }
         }).catch(function (error) {
             console.log(error);
@@ -261,9 +203,9 @@ export default {
 @import "../../static/MDeditor/css/editormd.css";
 </style>
 <style type="text/css">
-  html{
-    height: 100%;
-  }
+  html{ height: 100%; }
+  #app{ margin-top: 10px; }
+  .navbar-nav>li>a { padding: 8px !important; }
 </style>
 
 

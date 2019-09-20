@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <!-- <vueCanvasNest :config="{color:'0,0,0',opacity:1}"></vueCanvasNest> -->
-        <NavHeader v-if="isEditor">
+        <NavHeader v-if="!isEditor">
             <div slot="web">
                 <ul class="nav navbar-nav">
                     <li v-for="item in list" v-bind:key="item.id">
@@ -15,9 +15,9 @@
                 </ul>
             </div>
         </NavHeader>
-        <AddTags></AddTags>
+        <!-- <AddTags></AddTags> -->
         <div class="container-fluid"><router-view/></div>
-        <NavFooter v-if="isEditor" class="hidden-xs hidden-sm"></NavFooter>
+        <NavFooter v-if="!isEditor" class="hidden-xs hidden-sm"></NavFooter>
     </div>
 </template>
 
@@ -28,7 +28,7 @@ import vueCanvasNest from 'vue-canvas-nest'
 import Login from './components/Login'
 import EditOnline from './components/EditOnline'
 import UserOperation from './components/userOperation'
-import AddTags from './components/addTags'
+
 
 export default {
   name: 'App',
@@ -39,7 +39,7 @@ export default {
     Login,
     EditOnline,
     UserOperation,
-    AddTags
+    
   },
   data() {
       return {
