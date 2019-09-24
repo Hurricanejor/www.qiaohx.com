@@ -1,23 +1,33 @@
 <template lang="html">
     <div class="">
         <!-- <Test></Test> -->
-        <Form :model="formData" ref="formData">
-          <FormItem prop="titleCheck">
+        <Form ref="formData" :model="formData"  :rules="ruleForm">
+          <FormItem prop="title">
             <Row :gutter="16">
                 <Col span="20"><Input type="text" v-model="formData.title" placeholder="请输入标题"></Input></Col>
-                <Col span="2"><Button @click="handleClick()">发布文章</Button></Col>
+                <Col span="2"><Button @click="handleClick" type="primary">发布文章</Button></Col>
                 <Col span="2"><UserOperation></UserOperation></Col>
             </Row>
           </FormItem>
-        <Modal v-model="modal1" title="发布文章" @on-ok="ok" @on-cancel="cancel">
-          <FormItem label="分类">
-              <Input placeholder="Enter something..."></Input>
-          </FormItem>
-        </Modal>
-        <div id="editor-md" class="main-editor">
-          <textarea></textarea>
-        </div>
-        <Popup v-show="popFlag" :msg='popMsg'></Popup>
+          <Modal v-model="modal1" title="发布文章" @on-ok="ok" @on-cancel="cancel">
+            <FormItem>
+              <Row :gutter="16">
+                <Col span="3"><Label>分类</Label></Col>
+                <Col span="10"><Input type="text" v-model="formData.group" placeholder="如有多个请用逗号隔开"></Input></Col>
+                <Col span="6"><Button @click="" type="info">已有分类</Button></Col>
+              </Row>
+            </FormItem>
+            <FormItem>
+              <Row :gutter="16">
+                <Col span="3"><Label>关键字</Label></Col>
+                <Col span="17"><Input type="text" v-model="formData.keyword" placeholder="如有多个请用逗号隔开"></Input></Col>
+              </Row>
+            </FormItem>
+          </Modal>
+          <div id="editor-md" class="main-editor">
+            <textarea v-model="formData.content"></textarea>
+          </div>
+          <Popup v-show="popFlag" :msg='popMsg'></Popup>
         </Form>
     </div>
 </template>
@@ -68,19 +78,14 @@ export default {
       },
     },
     data() {
-      // const validateTitle = (rule, value, callback) => {
-      //   console.log(value)
-      //   debugger;
-      //     if (value === '') {
-      //         callback(new Error('Please enter your password'));
-      //     } else {
-      //         if (this.formData.title !== '') {
-      //             // 对第二个密码框单独验证
-      //             this.$refs.formData.validateField('titleCheck');
-      //         }
-      //         callback();
-      //     }
-      // };
+      const validateTitle = (rule, value, callback) => {
+        // console.log(rule)
+        console.log("1====="+value)
+        console.log("2====="+this.formData.title)
+          if (value === '') {
+              callback(new Error('请输入标题！'));
+          }
+      };
       return {
         instance: null,
         popFlag: false,
@@ -89,19 +94,24 @@ export default {
         titleName: "",
         modal1: false,
         formData: {
-            title: ""
+            title: "",
+            content: "",
+            group: "",
+            keyword: ""
         },
-        // ruleCustom: {
-        //     title: [
-        //         { validator: validateTitle, trigger: 'blur' }
-        //     ]
-        // }
+        ruleForm: {
+          title: [
+              { validator: validateTitle, trigger: 'blur' }
+          ],
+          group: [
+            {required: true}
+          ]
+        }
       };
     },
     watch: {
       instance() {
         deep: true
-        // return this.instance;
       }
     },
     mounted() {
@@ -142,10 +152,10 @@ export default {
         });
       },
       ok () {
-          this.$Message.info('Clicked ok');
+          this.$Message.info('OK');
       },
       cancel () {
-          this.$Message.info('Clicked cancel');
+          this.$Message.info('已取消');
       },
       handleSubmit (name) {
         this.$refs[name].validate((valid) => {
@@ -155,14 +165,14 @@ export default {
                 this.$Message.error('Fail!');
             }
         })
-          // this.$refs.formData.validateField('titleCheck')
       },
       handleClick() {
-        // debugger;
-        if (this.formData.title == '') {
-                  // 对第二个密码框单独验证
-                  this.$refs.formData.validateField('titleCheck');
-              }
+        // 点击 【发布文章】 按钮 验证 title 如果符合验证规则 则弹窗
+          this.$refs.formData.validateField('title');
+          console.log(this.formData.title)
+          if(this.formData.title !== "") {
+            this.modal1 = true;
+          }
       },
       btnSaveArticle() {
         var that = this;
